@@ -9,7 +9,7 @@
   <body>
     <script>
       const getUserChoice = (userInput) => {
-        userInput = window.prompt(" ");
+        userInput = window.prompt(" ").toLowerCase();
 
         if (
           userInput === "rock" ||
@@ -17,9 +17,10 @@
           userInput === "scissors" ||
           userInput === "bomb"
         ) {
-          return userInput;
+          return { value: userInput, valid: true };
         } else {
           console.log("Error: incorrect choice");
+          return { value: userInput, valid: false };
         }
       };
 
@@ -68,9 +69,11 @@
       const playGame = () => {
         const userChoice = getUserChoice();
         const computerChoice = getComputerChoice();
-        console.log("You had: " + userChoice);
-        console.log("The computer had: " + computerChoice);
-        console.log(determineWinner(userChoice, computerChoice));
+        console.log("You had: " + userChoice.value);
+        if (userChoice.valid === true) {
+          console.log("The computer had: " + computerChoice);
+          console.log(determineWinner(userChoice, computerChoice));
+        }
       };
       playGame();
     </script>
