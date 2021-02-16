@@ -7,6 +7,8 @@
     <title>Practical Javascript</title>
   </head>
   <body>
+    <button id="display-todos-button">Display todos</button>
+    <button id="toggle-all-button">Toggle all</button>
     <script>
       // var todos = ["Item 1", "Item 2", "Item 3"];
       var todos = [
@@ -22,7 +24,7 @@
       // }
       function add(initialTodoText) {
         todos.push({ todoText: initialTodoText, completed: false });
-        console.log(todos);
+        displayTodos();
       }
 
       // function edit(position, newValue) {
@@ -31,12 +33,12 @@
       // }
       function edit(position, newTodoText) {
         todos[0].todoText = newTodoText;
-        console.log(todos);
+        displayTodos();
       }
 
       function remove(position) {
         todos.splice(position, 1);
-        console.log(todos);
+        displayTodos();
       }
 
       function toggle(position) {
@@ -45,8 +47,40 @@
         } else {
           todos[position].completed = false;
         }
-        console.log(todos);
+        displayTodos();
       }
+
+      function displayTodos() {
+        for (let i = 0; i < todos.length; i++) {
+          console.log(todos[i]);
+        }
+      }
+
+      function toggleAll() {
+        var completedTodos = 0;
+
+        for (let i = 0; i < todos.length; i++) {
+          if (todos[i].completed === true) {
+            completedTodos++;
+          }
+        }
+        if (completedTodos === todos.length) {
+          for (let i = 0; i < todos.length; i++) {
+            todos[i].completed = false;
+          }
+        } else {
+          for (let i = 0; i < todos.length; i++) {
+            todos[i].completed = true;
+          }
+        }
+        displayTodos();
+      }
+
+      const displayTodosButton = document.getElementById("display-todos-button");
+      displayTodosButton.addEventListener("click", displayTodos);
+
+      const toggleAllButton = document.getElementById("toggle-all-button");
+      toggleAllButton.addEventListener("click", toggleAll);
     </script>
   </body>
 </html>
