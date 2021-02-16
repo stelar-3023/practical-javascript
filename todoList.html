@@ -8,23 +8,43 @@
   </head>
   <body>
     <script>
-      var todos = ["Item 1", "Item 2", "Item 3"];
-
+      // var todos = ["Item 1", "Item 2", "Item 3"];
+      var todos = [
+        { todoText: "Item 1", completed: false },
+        { todoText: "Item 2", completed: false },
+        { todoText: "Item 3", completed: false },
+      ];
       console.log(todos);
-      function add(todo) {
-        todos.push(todo);
+
+      // function add(todo) {
+      //   todos.push(todo);
+      //   console.log(todos);
+      // }
+      function add(initialTodoText) {
+        todos.push({ todoText: initialTodoText, completed: false });
         console.log(todos);
       }
 
-      function edit(position, newValue) {
-        todos[position] = newValue;
+      // function edit(position, newValue) {
+      //   todos[position] = newValue;
+      //   console.log(todos);
+      // }
+      function edit(position, newTodoText) {
+        todos[0].todoText = newTodoText;
         console.log(todos);
       }
-      // todos[0] = "Item 1 updated";
-      // todos.splice(0, 1);
 
       function remove(position) {
         todos.splice(position, 1);
+        console.log(todos);
+      }
+
+      function toggle(position) {
+        if (todos[position].completed === false) {
+          todos[position].completed = true;
+        } else {
+          todos[position].completed = false;
+        }
         console.log(todos);
       }
     </script>
